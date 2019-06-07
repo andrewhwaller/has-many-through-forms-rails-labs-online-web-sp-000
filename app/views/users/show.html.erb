@@ -1,13 +1,8 @@
+<h1><%= @user.username %></h1>
 
-<%= form_for post do |f| %>
-<%= f.label "Title" %>
-<%= f.text_field :title %>
-<%= f.label "Content" %>
-<%= f.text_area :content %>
-<%= f.collection_check_boxes :category_ids, Category.all, :id, :name %>
-<%= f.label "Create a New Category"%>
-<%= f.fields_for :categories, post.categories.build do |categories_fields| %>
-<%= categories_fields.text_field :name %>
-<% end %>
-<%= f.submit %>
-<% end %>
+<h3>Has Commented on Posts:</h3>
+<ul>
+  <% @user.posts.uniq.each do |post| %>
+    <li><%= link_to post.title, post %></li>
+  <% end %>
+</ul>
